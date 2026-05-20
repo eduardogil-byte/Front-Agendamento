@@ -9,12 +9,13 @@ function CalendarioPage({ agendamentos }) {
   const [diaSelecionado, setDiaSelecionado] = useState("");
 
   function pegarData(dataHora) {
+    if (!dataHora) return "";
     return dataHora.split("T")[0];
   }
 
-  const compromissosDoDia = agendamentos.filter(
-    (item) => pegarData(item.dataHora) === diaSelecionado,
-  );
+  const compromissosDoDia = agendamentos.filter((item) => {
+    return pegarData(item.data_hora) === diaSelecionado;
+  });
 
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-8">

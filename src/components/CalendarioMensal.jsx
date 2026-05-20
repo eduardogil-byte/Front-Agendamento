@@ -61,9 +61,10 @@ function CalendarioMensal({
   function temCompromisso(dia) {
     const dataFormatada = formatarData(dia);
 
-    return agendamentos.some(
-      (item) => item.dataHora.split("T")[0] === dataFormatada,
-    );
+    return agendamentos.some((item) => {
+      if (!item.data_hora) return false;
+      return item.data_hora.split("T")[0] === dataFormatada;
+    });
   }
 
   return (
@@ -128,7 +129,11 @@ function CalendarioMensal({
                 <span
                   className={`
                     text-xs px-2 py-1 rounded-full
-                    ${selecionado ? "bg-white text-blue-600" : "bg-green-100 text-green-700"}
+                    ${
+                      selecionado
+                        ? "bg-white text-blue-600"
+                        : "bg-green-100 text-green-700"
+                    }
                   `}
                 >
                   Tem compromisso

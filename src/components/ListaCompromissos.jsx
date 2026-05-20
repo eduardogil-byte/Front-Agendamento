@@ -18,10 +18,12 @@ function ListaCompromissos({ compromissos }) {
 
               <p className="text-slate-600 text-sm mt-1">
                 Horário:{" "}
-                {new Date(item.dataHora).toLocaleTimeString("pt-BR", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
+                {item.data_hora
+                  ? new Date(item.data_hora).toLocaleTimeString("pt-BR", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
+                  : "Sem horário"}
               </p>
             </li>
           ))}
